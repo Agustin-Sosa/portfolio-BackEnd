@@ -68,12 +68,12 @@ public class CEducacion {
         return new ResponseEntity(new Mensaje("Educacion creada con éxito"), HttpStatus.OK);
     }
     
-    @PutMapping("/Update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoEducacion dtoeducacion){
         if(!sEducacion.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
-        if(sEducacion.existsByNombreE(dtoeducacion.getNombreE()) & sEducacion.getByNombreE(dtoeducacion.getNombreE()).get().getId() != id){
+        if(sEducacion.existsByNombreE(dtoeducacion.getNombreE()) && sEducacion.getByNombreE(dtoeducacion.getNombreE()).get().getId() != id){
             return new ResponseEntity(new Mensaje("Nombre ya existente"), HttpStatus.BAD_REQUEST);
         }
         if(StringUtils.isBlank(dtoeducacion.getNombreE())){
