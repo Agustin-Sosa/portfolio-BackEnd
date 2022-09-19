@@ -9,8 +9,8 @@ import javax.persistence.Id;
 @Entity
 public class hys {
     @Id
-    private int id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nombre;
     private int porcentaje;
 
