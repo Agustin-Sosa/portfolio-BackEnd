@@ -22,10 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/personas")
-@CrossOrigin(origins = "https://frontend-argprog-d7319.web.app")
+@CrossOrigin(origins = {"https://frontend-argprog-d7319.web.app", "http://localhost:4200"})
 public class PersonaController {
      @Autowired
     ImpPersonaService personaService;
+    
     
     @GetMapping("/lista")
     public ResponseEntity<List<Persona>> list(){
@@ -53,18 +54,18 @@ public class PersonaController {
     }*/
     
     /*@PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody dtoEducacion dtoeducacion){
-        if(StringUtils.isBlank(dtoeducacion.getNombreE())){
+    public ResponseEntity<?> create(@RequestBody dtoPersona dtopersona){
+        if(StringUtils.isBlank(dtopersona.getNombre())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if(sEducacion.existsByNombreE(dtoeducacion.getNombreE())){
+        if(personaService.existsByNombre(dtopersona.getNombre())){
             return new ResponseEntity(new Mensaje("Nombre ya existente"), HttpStatus.BAD_REQUEST);
         }
         
-        Educacion educacion = new Educacion(
-                dtoeducacion.getNombreE(), dtoeducacion.getDescripcionE()
+        Persona persona = new Persona(
+                dtopersona.getNombre(), dtopersona.getDescripcion()
         );
-        sEducacion.save(educacion);
+        personaService.save(persona);
         return new ResponseEntity(new Mensaje("Educacion creada con éxito"), HttpStatus.OK);
     }*/
     
